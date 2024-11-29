@@ -26,13 +26,29 @@ TO-DO:
         now create a heap with all the data points stored into it, creating a max and min heap based on the scales of the of the major, and then go through the heap until we find the ID that matches with the ID that is inputted from the user, and then output that major.
 
 
+Tasks and Assignments:
+
+- Hector
+1. Making the min and max heaps, getting the data from the csv file and inputting them into the min and max heaps. 
+
+- Steffano
+3. Creating the front end, getting the user inputs, (cin and cout), creating the classes from the back end and outputting it to the user. - Steffano
+
+
+- Edward
+5. generating the speed of the min and max heap based on how long the program takes to actually begin and output the time to the user, then inputting this into the front end.
+  In terms of clock speed?
+
+
+
+
 
 
 
 
 
      
-3. find out how we are actually getting our data and exactly how we are organizing it/looking for
+6. find out how we are actually getting our data and exactly how we are organizing it/looking for
 
     **- I found these websites that have data sets:
          https://www.kaggle.com/search?q=College+Majors+in%3Adatasets <- this has datasets for college majors, still have to do a further dive on how to use it though.
@@ -41,8 +57,8 @@ TO-DO:
          https://data.gov/ <- last one I found**
         
 
-4. get the data, make data structures/algorithms from scratch.
-5. make pretty frontend bc we are chill like that and we know react
-6. code the rest
+7. get the data, make data structures/algorithms from scratch.
+8. make pretty frontend bc we are chill like that and we know react
+9. code the rest
 
 
