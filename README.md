@@ -7,16 +7,55 @@ TO-DO:
 
 1. make final choice on what 2 algorithms/data structures to use and compare
 
-   **- Data Structure Comparison Idea: use a max heap to find which major fits best with the user that is trying to find what major is best for him or her, and then use graphs to connect similar nodes of majors that can be close to the max heap, for example the child of the root node of the max heap would be the other closest fitting majors, and the further away from the root node, the further away it is from the main major chosen.**
+
+
+
+
+- Data Structures:
+
+1. Max Heap: Based on the input that we get from the user, we turn these choices into an ID:
+      - Example:
+          answer 1: interest in Math & science (ID: 1)
+          answer 2: Highly Creative (ID: 4)
+          answer 3: interest Solving logical problems (ID: 3)
+          answer 4: Highly Social (ID: 4)
+          answer 5: interest in Developing Groundbreaking technology (ID: 5)
+
+        combined ID: 14345
+
+        now look through all majors with this ID and get the scale from 1-10 for each major with this ID, insert each major based on the scale into the Max heap and the   
+        major with this highest rank with this ID is output to the user.
+
+        - Example continued:
+
+          Major: Electrical Engineering: ID: 14345 => Scale : 5
+          Major: Health Science: ID: 14345 => Scale: 3
+          Major: Math: ID: 14345 => Scale: 9
+          Major: Englis: ID: 14345 => Scale: 1
+
+          input values into Max Heap based on Scale => MaxHeap.Top => Math
+
+          Therefore, the recommended major for the user would be math.
+          Second recommendation, Electrical Engineering.
+
+
+
+
+
+
+
      
-2. find out how we are actually getting our data and exactly how we are organizing it/looking for
+3. find out how we are actually getting our data and exactly how we are organizing it/looking for
 
     **- I found these websites that have data sets:
          https://www.kaggle.com/search?q=College+Majors+in%3Adatasets <- this has datasets for college majors, still have to do a further dive on how to use it though.
          https://datasetsearch.research.google.com/ <- we can find our data sets through this as well
+
          https://data.gov/ <- last one I found**
         
 
 4. get the data, make data structures/algorithms from scratch.
 5. make pretty frontend bc we are chill like that and we know react
 6. code the rest
+
+
