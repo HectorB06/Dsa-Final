@@ -23,20 +23,7 @@ TO-DO:
 
         combined ID: 14345
 
-        now look through all majors with this ID and get the scale from 1-10 for each major with this ID, insert each major based on the scale into the Max heap and the   
-        major with this highest rank with this ID is output to the user.
-
-        - Example continued:
-
-          Major: Electrical Engineering: ID: 14345 => Scale : 5
-          Major: Health Science: ID: 14345 => Scale: 3
-          Major: Math: ID: 14345 => Scale: 9
-          Major: Englis: ID: 14345 => Scale: 1
-
-          input values into Max Heap based on Scale => MaxHeap.Top => Math
-
-          Therefore, the recommended major for the user would be math.
-          Second recommendation, Electrical Engineering.
+        now create a heap with all the data points stored into it, creating a max and min heap based on the scales of the of the major, and then go through the heap until we find the ID that matches with the ID that is inputted from the user, and then output that major.
 
 
 
