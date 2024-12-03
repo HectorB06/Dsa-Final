@@ -5,12 +5,17 @@
 #include <sstream>
 
 #include "Student.h"
+#include "max_heap.h"
+#include "min_heap.h"
+#include <chrono>
 
 using namespace std;
-
+using namespace std::chrono;
 int main() {
 
-    vector<Student> all_students;
+    Max_heap max_students = Max_heap();
+    Min_heap min_students = Min_heap();
+
 
     string filename = "enhanced_user_major_dataset.csv";
 
@@ -84,10 +89,12 @@ int main() {
         int final_id = stoi(unique_id);
 
         Student new_student = Student(subject, creativity, tasks, interpersonal, goals, recommendation, scale, final_id);
-        all_students.push_back(new_student);
+        max_students.heap.push_back(new_student);
+        min_students.heap.push_back(new_student);
     }
 
-    all_students[0].getID();
+    max_students.buildHeap();
+    min_students.buildHeap();
 
     cout << "==========================================================\n"
             "Welcome to the Major Recommender! \n"
@@ -224,7 +231,7 @@ int main() {
 
     }
 
-    cout << userID << endl;
+    int new_id = stoi(userID);
 
 
 }

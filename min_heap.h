@@ -1,10 +1,9 @@
 //
-// Created by Hector Borjas on 12/2/2024.
+// Created by Hector Borjas on 12/3/2024.
 //
 
-
-#ifndef DSA_FINAL_MAX_HEAP_H
-#define DSA_FINAL_MAX_HEAP_H
+#ifndef DSA_FINAL_MIN_HEAP_H
+#define DSA_FINAL_MIN_HEAP_H
 
 #include <iostream>
 #include <vector>
@@ -14,12 +13,12 @@
 
 using namespace std;
 
-class Max_heap{
+class Min_heap{
 public:
 
     vector<Student> heap;
 
-    Max_heap()= default;
+    Min_heap()= default;
 
     void heapify(int size, int i){
 
@@ -28,10 +27,10 @@ public:
         int leftChild = 2*i +1;
         int rightChild = 2*i +2;
 
-        if(leftChild < size && heap[leftChild].getID() > heap[root].getID()){
+        if(leftChild < size && heap[leftChild].getID() < heap[root].getID()){
             root = leftChild;
         }
-        if(rightChild < size && heap[rightChild].getID() > heap[root].getID()){
+        if(rightChild < size && heap[rightChild].getID() < heap[root].getID()){
             root = rightChild;
         }
 
@@ -50,4 +49,5 @@ public:
     }
 };
 
-#endif //DSA_FINAL_MAX_HEAP_H
+
+#endif //DSA_FINAL_MIN_HEAP_H

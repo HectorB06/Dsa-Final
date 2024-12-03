@@ -33,7 +33,7 @@ public:
     }
 
     int getID(){
-        cout << this->userID << endl;
+        return this->userID;
     }
     // getBestFitMajor function
     // getTime function
