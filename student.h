@@ -5,14 +5,36 @@
 #ifndef DSAFINAL_STUDENT_H
 #define DSAFINAL_STUDENT_H
 
+#include <iostream>
+
+using namespace std;
 
 class Student {
 private:
     int userID;
+    string subject;
+    string creativity;
+    string tasks;
+    string interpersonal;
+    string goals;
+    string recommendation;
+    string scale;
 
 public:
-    Student(int userID);
-    int getID();
+    Student(string subject, string creativity, string tasks, string interpersonal, string goals, string recommendation, string scale, int id){
+        this->subject = subject;
+        this->creativity = creativity;
+        this->tasks = tasks;
+        this->interpersonal = interpersonal;
+        this->goals = goals;
+        this->recommendation = recommendation;
+        this->scale = scale;
+        userID = id;
+    }
+
+    int getID(){
+        cout << this->userID << endl;
+    }
     // getBestFitMajor function
     // getTime function
 

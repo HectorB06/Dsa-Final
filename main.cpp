@@ -1,8 +1,94 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+#include "Student.h"
 
 using namespace std;
 
 int main() {
+
+    vector<Student> all_students;
+
+    string filename = "enhanced_user_major_dataset.csv";
+
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "F" << endl;
+        return 1;
+    }
+
+    string student_line;
+    string header;
+    getline(file, header);
+
+    while(getline(file, student_line)){
+        stringstream ss(student_line);
+
+        string id;
+        string subject;
+        string creativity;
+        string tasks;
+        string interpersonal;
+        string goals;
+        string recommendation;
+        string scale;
+
+        getline(ss, id, ',');
+        getline(ss, subject, ',');
+        getline(ss, creativity, ',');
+        getline(ss, tasks, ',');
+        getline(ss, interpersonal,',');
+        getline(ss, goals, ',');
+        getline(ss, recommendation,',');
+        getline(ss, scale, ',');
+
+        if(subject == "Business and Finance")
+            subject = "3";
+        else if(subject == "Math and Science")
+            subject = "1";
+        else if(subject == "Arts and Humanities")
+            subject = "2";
+        else if(subject == "Technology and Engineering")
+            subject = "4";
+        else
+            subject = "5";
+
+        if(tasks == "Solving logical problems")
+            tasks = "1";
+        else if(tasks == "Designing or creating")
+            tasks = "2";
+        else if(tasks == "Leading teams")
+            tasks = "3";
+        else if(tasks == "Writing code")
+            tasks = "4";
+        else
+            tasks = "5";
+
+        if(goals == "Developing technology")
+            goals = "1";
+        else if (goals == "Creating art")
+            goals = "2";
+        else if(goals == "Building a business")
+            goals = "3";
+        else if(goals == "Healthcare"){
+            goals = "4";
+        }
+        else{
+            goals = "5";
+        }
+
+        string unique_id = subject + creativity + tasks + interpersonal + goals;
+        int final_id = stoi(unique_id);
+
+        Student new_student = Student(subject, creativity, tasks, interpersonal, goals, recommendation, scale, final_id);
+        all_students.push_back(new_student);
+    }
+
+    all_students[0].getID();
+
     cout << "==========================================================\n"
             "Welcome to the Major Recommender! \n"
             "Based on the answers you provide, the major that we believe \n"
@@ -142,3 +228,4 @@ int main() {
 
 
 }
+
