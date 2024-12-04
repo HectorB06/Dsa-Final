@@ -3,21 +3,154 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <algorithm>
+#include <set>
 
-#include "Student.h"
+#include "student.h"
 #include "max_heap.h"
 #include "min_heap.h"
 #include <chrono>
 
 using namespace std;
 using namespace std::chrono;
+
+void calculateMajorFromMinHeap(int userID, Min_heap& min_students) {
+    auto start_time = high_resolution_clock::now();
+    bool exact_match_found = false;
+    int closest_difference = 2147483647;
+    int closest_id = -1;
+    vector<Student> matching_students;
+
+    for (const auto& student : min_students.heap) {
+        if (student.getID() == userID) {
+            matching_students.push_back(student);
+            exact_match_found = true;
+        }
+    }
+
+    if (!exact_match_found) {
+        for (const auto& student : min_students.heap) {
+            int current_difference = abs(student.getID() - userID);
+            if (current_difference < closest_difference) {
+                closest_difference = current_difference;
+                closest_id = student.getID();
+            }
+        }
+
+        if (closest_id != -1) {
+            for (const auto& student : min_students.heap) {
+                if (student.getID() == closest_id) {
+                    matching_students.push_back(student);
+                }
+            }
+        }
+    }
+
+    if (matching_students.empty()) {
+        cout << "No recommendation found" << endl;
+        return;
+    }
+
+    sort(matching_students.begin(), matching_students.end(), [](const Student& a, const Student& b) {
+        return stoi(a.getScale()) > stoi(b.getScale());
+    });
+
+    int highest_scale = stoi(matching_students.front().getScale());
+    set<string> recommended_majors;
+
+    for (const auto& student : matching_students) {
+        if (stoi(student.getScale()) == highest_scale) {
+            recommended_majors.insert(student.getRecommendation());
+        }
+    }
+
+    auto stop_time = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop_time - start_time);
+    cout << "Data Structure used: Min Heap" << "\nTime taken: " << duration.count() << " milliseconds" << endl;
+
+    cout << "Your recommended major(s): ";
+    set<string>::iterator it;
+    for (it = recommended_majors.begin(); it != recommended_majors.end(); ++it) {
+        cout << *it;
+        if (next(it) != recommended_majors.end()) {
+            cout << ", ";
+        }
+    }
+    cout << "!\n" << endl;
+}
+
+void calculateMajorFromMaxHeap(int userID, Max_heap& max_students) {
+    auto start_time = high_resolution_clock::now();
+    bool exact_match_found = false;
+    int closest_difference = 2147483647;
+    int closest_id = -1;
+    vector<Student> matching_students;
+
+    for (const auto& student : max_students.heap) {
+        if (student.getID() == userID) {
+            matching_students.push_back(student);
+            exact_match_found = true;
+        }
+    }
+
+    if (!exact_match_found) {
+        for (const auto& student : max_students.heap) {
+            int current_difference = abs(student.getID() - userID);
+            if (current_difference < closest_difference) {
+                closest_difference = current_difference;
+                closest_id = student.getID();
+            }
+        }
+
+        if (closest_id != -1) {
+            for (const auto& student : max_students.heap) {
+                if (student.getID() == closest_id) {
+                    matching_students.push_back(student);
+                }
+            }
+        }
+    }
+
+    if (matching_students.empty()) {
+        cout << "No recommendation found" << endl;
+        return;
+    }
+
+    sort(matching_students.begin(), matching_students.end(), [](const Student& a, const Student& b) {
+        return stoi(a.getScale()) > stoi(b.getScale());
+    });
+
+    int highest_scale = stoi(matching_students.front().getScale());
+    set<string> recommended_majors;
+
+    for (const auto& student : matching_students) {
+        if (stoi(student.getScale()) == highest_scale) {
+            recommended_majors.insert(student.getRecommendation());
+        }
+    }
+
+    auto stop_time = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop_time - start_time);
+    cout << "Data Structure used: Max Heap" << "\nTime taken: " << duration.count() << " milliseconds" << endl;
+
+    cout << "Your recommended major(s): ";
+    set<string>::iterator it;
+    for (it = recommended_majors.begin(); it != recommended_majors.end(); ++it) {
+        cout << *it;
+        if (next(it) != recommended_majors.end()) {
+            cout << ", ";
+        }
+    }
+    cout << "!" << endl;
+}
+
 int main() {
 
     Max_heap max_students = Max_heap();
     Min_heap min_students = Min_heap();
 
 
-    string filename = "enhanced_user_major_dataset.csv";
+    string filename = "/Users/eddy/Desktop/UF Fall 24/DSA/Dsa-Final-main/enhanced_user_major_dataset.csv";
 
     ifstream file(filename);
     if (!file.is_open()) {
@@ -95,6 +228,7 @@ int main() {
 
     max_students.buildHeap();
     min_students.buildHeap();
+
 
     cout << "==========================================================\n"
             "Welcome to the Major Recommender! \n"
@@ -233,6 +367,7 @@ int main() {
 
     int new_id = stoi(userID);
 
-
+    calculateMajorFromMaxHeap(new_id, max_students);
+    calculateMajorFromMinHeap(new_id, min_students);
 }
 

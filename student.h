@@ -32,10 +32,19 @@ public:
         userID = id;
     }
 
-    int getID(){
+    int getID () const{
         return this->userID;
     }
-    // getBestFitMajor function
+
+    string getScale () const {
+        return this->scale;
+    }
+
+    string getRecommendation () const {
+        return this->recommendation;
+    }
+
+    //getBestFitMajor()
     // getTime function
 
 
